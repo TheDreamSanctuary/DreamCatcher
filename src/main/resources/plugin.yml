@@ -1,3 +1,9 @@
 name: DreamCatcher
 version: 1.0.0-SNAPSHOT
 main: com.thedreamsanctuary.dreamcatcher.DreamCatcher
+commands:
+   vtkick:
+      description: Votes for a player to be kicked.
+      usage: /<command> [player]
+      permission: dreamcatcher.vtkick
+      permission-message: You don't have <permission>
