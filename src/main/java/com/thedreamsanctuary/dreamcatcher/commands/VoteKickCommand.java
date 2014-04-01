@@ -44,7 +44,7 @@ public class VoteKickCommand implements CommandExecutor {
             if(kickVotes.containsKey(offender)){
                 List<Player> voters = kickVotes.get(offender);
                 voters.add(voter);
-
+                checkForKick(offender, voters);
             }
             else{
                 List<Player> voters = new ArrayList<Player>();
