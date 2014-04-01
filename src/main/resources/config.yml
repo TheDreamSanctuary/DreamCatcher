@@ -1,0 +1,12 @@
+key: value
+one:
+  two: value
+  three:
+    - values
+    - values
+    - values
+
+kick:
+  vote-message: <offender> has been voted to be kicked by <voter>
+  votes-required: 4
+  kick-message: You have been kicked by a community vote

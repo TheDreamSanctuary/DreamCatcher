@@ -10,7 +10,10 @@ public class DreamCatcher extends JavaPlugin {
 
     private VoteKickCommand voteKickCommand;
 
+
     public void onEnable(){
+        this.saveDefaultConfig();
+
         this.voteKickCommand = new VoteKickCommand(this);
 
         getCommand("vtkick").setExecutor(voteKickCommand);

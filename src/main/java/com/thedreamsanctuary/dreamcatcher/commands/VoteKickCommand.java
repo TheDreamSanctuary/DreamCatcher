@@ -52,15 +52,16 @@ public class VoteKickCommand implements CommandExecutor {
                 kickVotes.put(offender, voters);
             }
 
-            Bukkit.broadcastMessage(voter.getDisplayName() +  " has voted " + offender.getDisplayName() + " off the island!");
+            Bukkit.broadcastMessage(plugin.getConfig().getString("kick.vote-message")
+                    .replace("<offender>", offenderName).replace("<voter>", voter.getDisplayName()));
             return true;
         }
         return false;
     }
 
     private void checkForKick(Player offender, List<Player> voters){
-        if(voters.size() >= 3){
-            offender.kickPlayer("You have been kicked off the island!");
+        if(voters.size() >= plugin.getConfig().getInt("kick.votes-required")){
+            offender.kickPlayer(plugin.getConfig().getString("kick.kick-message"));
             kickVotes.remove(offender);
         }
     }
