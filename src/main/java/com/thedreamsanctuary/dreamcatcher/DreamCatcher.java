@@ -1,5 +1,6 @@
 package com.thedreamsanctuary.dreamcatcher;
 
+import com.thedreamsanctuary.dreamcatcher.commands.VoteKickCommand;
 import org.bukkit.plugin.java.JavaPlugin;
 
 /**
@@ -7,8 +8,12 @@ import org.bukkit.plugin.java.JavaPlugin;
  */
 public class DreamCatcher extends JavaPlugin {
 
-    public void onEnable(){
+    private VoteKickCommand voteKickCommand;
 
+    public void onEnable(){
+        this.voteKickCommand = new VoteKickCommand(this);
+
+        getCommand("vtkick").setExecutor(voteKickCommand);
     }
 
     public void onDisable(){
