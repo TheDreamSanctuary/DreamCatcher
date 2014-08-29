@@ -1,25 +1,41 @@
 package com.thedreamsanctuary.dreamcatcher;
 
-import com.thedreamsanctuary.dreamcatcher.commands.VoteKickCommand;
+import java.io.File;
+import java.io.IOException;
+
 import org.bukkit.plugin.java.JavaPlugin;
 
-/**
- * Created by josephkent on 3/31/14.
- */
-public class DreamCatcher extends JavaPlugin {
+import com.thedreamsanctuary.dreamcatcher.commands.VoteKickCommand;
+import com.thedreamsanctuary.dreamcatcher.util.Configuration;
 
-    private VoteKickCommand voteKickCommand;
+public class DreamCatcher extends JavaPlugin
+{
+    private VoteKickCommand         voteKickCommand;
+    private static final VoteConfig config = new VoteConfig();
 
-
-    public void onEnable(){
-        this.saveDefaultConfig();
-
+    @Override
+    public void onEnable()
+    {
+        try
+        {
+            Configuration.loadConfiguration(new File("plugins" + File.separator + "DreamCatcher" + File.separator + "Config.properties"), config);
+        } catch (final IOException e)
+        {
+            e.printStackTrace();
+        }
         this.voteKickCommand = new VoteKickCommand(this);
 
-        getCommand("vtkick").setExecutor(voteKickCommand);
+        this.getCommand("vtkick").setExecutor(this.voteKickCommand);
     }
 
-    public void onDisable(){
+    public static VoteConfig getVoteConfig()
+    {
+        return config;
+    }
+
+    @Override
+    public void onDisable()
+    {
 
     }
 
